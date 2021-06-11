@@ -1,0 +1,144 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">{{editModel?'编辑记录':'开始记录'}}</view>
+</cu-custom>
+<scroll-view scroll-x class="bg-white nav">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{item.id==TabCur?'text-cyan cur text-bold':''}}" wx:for="{{navItem}}" wx:key="id"
+      bindtap="tabSelect" data-id="{{item.id}}">
+      <text class="cuIcon-{{item.icon}} padding-right-xs"></text>{{item.navName}}
+    </view>
+  </view>
+</scroll-view>
+<!-- form区域 -->
+<view wx:if="{{TabCur == 0}}">
+  <view class="cu-form-group ">
+    <view class="title">记录时间</view>
+    <view class="content">
+      <picker mode="date" value="{{pickerDate}}" start="2000/01/01" bindchange="DateChange">
+        <view class="text-df">
+          {{pickerDate}}
+        </view>
+      </picker>
+      <picker mode="time" value="{{pickerTime}}" bindchange="TimeChange">
+        <view class="text-df">
+          {{pickerTime}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="cu-bar bg-white ">
+    <view class="action">
+      选择出血部位
+    </view>
+  </view>
+  <view class="cu-form-group grid col-4">
+    <view class="st-for-item " wx:for="{{BleedingSite}}" wx:key="_id">
+      <button class="cu-btn bg-white {{item._id == BleedingForm.position ?'text-cyan':''}}" bindtap="BleedingSiteChange"
+        data-id="{{item._id}}">
+        <text class="cuIcon-emoji"></text>
+        <view class="padding-left-xs">{{item.lab_value}}</view>
+      </button>
+    </view>
+  </view>
+  <view class="cu-bar bg-white ">
+    <view class="action">
+      选择出血类型
+    </view>
+  </view>
+  <view class="cu-form-group grid col-3">
+    <view class="st-for-item " wx:for="{{BleedingType}}" wx:key="_id">
+      <button class="cu-btn bg-white {{item._id == BleedingForm.type ?'text-cyan':''}}" bindtap="BleedingTypeChange"
+        data-id="{{item._id}}">
+        <text class="cuIcon-emoji"></text>
+        <view class="padding-left-xs">{{item.lab_value}}</view>
+      </button>
+    </view>
+  </view>
+  <view class="cu-bar bg-white ">
+    <view class="action">
+      出血严重程度
+    </view>
+  </view>
+  <view class="cu-form-group grid col-3">
+    <view class="st-for-item " wx:for="{{BleedingDegree}}" wx:key="_id">
+      <button class="cu-btn bg-white {{item._id == BleedingForm.degree ?'text-cyan':''}}" bindtap="BleedingDegreeChange"
+        data-id="{{item._id}}">
+        <text class="cuIcon-emoji"></text>
+        <view class="padding-left-xs">{{item.lab_value}}</view>
+      </button>
+    </view>
+  </view>
+  <view class="cu-bar bg-white ">
+    <view class="action">
+      治疗方案
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <textarea maxlength="-1" value="{{BleedingForm.programme}}" disabled="{{modalName!=null}}" data-type="BleedingProgramme" bindinput="bindTextAreaInput" placeholder="请输入治疗方案"></textarea>
+  </view>
+  <view class="cu-bar bg-white ">
+    <view class="action">
+      记录备注
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <textarea maxlength="-1" value="{{BleedingForm.note}}" disabled="{{modalName!=null}}" data-type="BleedingNote" bindinput="bindTextAreaInput" placeholder="再备注点什么吧"></textarea>
+  </view>
+  <view class="flex">
+    <view class="flex-sub padding-sm margin-xs" wx:if="{{!editModel}}">
+    <button class="cu-btn line-cyan lg" style="width:100%" data-type="BleedingForm" bindtap="resetForm">重置</button></view>
+    <view class="flex-sub padding-sm margin-xs" wx:if="{{!editModel}}">
+    <button class="cu-btn bg-cyan lg" style="width:100%" data-type="BleedingForm" bindtap="submitForm">确定</button></view>
+    <view class="flex-sub padding-sm margin-xs" wx:if="{{editModel}}">
+    <button class="cu-btn bg-cyan lg" style="width:100%" data-type="BleedingForm" bindtap="editForm">更新</button></view>
+  </view>
+</view>
+<view wx:if="{{TabCur == 1}}">
+  <view class="cu-form-group ">
+    <view class="title">记录时间</view>
+    <view class="content">
+      <picker mode="date" value="{{pickerDate}}" start="2000/01/01" bindchange="DateChange">
+        <view class="text-df">
+          {{pickerDate}}
+        </view>
+      </picker>
+      <picker mode="time" value="{{pickerTime}}" bindchange="TimeChange">
+        <view class="text-df">
+          {{pickerTime}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="cu-bar bg-white ">
+    <view class="action">
+      这周怎么样
+    </view>
+  </view>
+  <view class="cu-form-group grid col-2">
+    <view class="st-for-item " wx:for="{{StatusOfTheWeek}}" wx:key="_id">
+      <button class="cu-btn bg-white {{item._id == PreventionForm.status ?'text-cyan':''}}" bindtap="PreventionStatusChange"
+        data-id="{{item._id}}">
+        <text class="cuIcon-emoji"></text>
+        <view class="padding-left-xs">{{item.name}}</view>
+      </button>
+    </view>
+  </view>
+	<view class="cu-form-group">
+		<view class="title">预防措施</view>
+		<input value="{{PreventionForm.dose}}" class="text-right" bindinput="doseInput"></input>
+  </view>  
+  <view class="cu-bar bg-white ">
+    <view class="action">
+      记录备注
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <textarea maxlength="-1" value="{{PreventionForm.note}}" disabled="{{modalName!=null}}" data-type="PreventionNote" bindinput="bindTextAreaInput" placeholder="再备注点什么吧"></textarea>
+  </view>
+  <view class="flex">
+    <view class="flex-sub padding-sm margin-xs">
+    <button class="cu-btn line-cyan lg" style="width:100%" data-type="PreventionForm" bindtap="resetForm">重置</button></view>
+    <view class="flex-sub padding-sm margin-xs">
+    <button class="cu-btn bg-cyan lg" style="width:100%" data-type="PreventionForm" bindtap="submitForm">确定</button></view>
+  </view>
+</view>

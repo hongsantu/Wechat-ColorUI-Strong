@@ -1,0 +1,21 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">关于 I'm Strong</view>
+</cu-custom>
+<view class="cu-bar bg-white">
+  <view class="action">
+    <text class="cuIcon-title text-cyan"></text>
+    <text>跟你讲</text>
+  </view>
+</view>
+<view class="padding bg-white ">
+  <parser html="{{_talkUser}}" />
+</view>
+<view class="cu-bar bg-white margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-cyan"></text>
+    <text>特别感谢</text>
+  </view>
+</view>
+<view class="padding bg-white">
+  <parser html="{{_thanks}}" />
+</view>

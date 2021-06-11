@@ -1,0 +1,76 @@
+<scroll-view scroll-y class="scrollPage">
+  <cu-custom bgColor="bg-white" isCustom="{{false}}">
+    <view slot="content">I'm Strong</view>
+  </cu-custom>
+  <view class="cu-list grid col-2 shadow shadow-lg bg-white">
+    <view class="cu-item">
+      <button class="cu-btn bg-white" style="display: block;height: auto;" bindtap="goSicknessPage">
+        <text class="count-text-number text-bold">{{user_sickness}}</text>
+        <text class="text-sm">出血记录</text>
+      </button>
+    </view>
+    <view class="cu-item">
+      <button class="cu-btn bg-white" style="display: block;height: auto;" bindtap="goTreatmentPage">
+        <text class="count-text-number text-bold">{{user_treatment}}</text>
+        <text class="text-sm">预防记录</text>
+      </button>
+    </view>
+  </view>
+  <view class="sickness-view bg-white shadow radius padding" wx:if="{{ sickNessNEW != null}}">
+    <view class="text-center text-blod padding-bottom-xs">{{sickNessNEW.occurrence_time}}</view>
+    <view class="padding-tb-xs">严重程度：<text class="text-{{sickNessNEW.degree == '15'?'red':(sickNessNEW.degree == '14'?'orange':'green')}}">{{sickNessNEW.degreeName}}</text></view>
+    <view class="flex">
+      <view class="padding-tb-xs flex-sub">出血部位：<text>{{sickNessNEW.positionName}}</text></view>
+      <view class="padding-tb-xs flex-sub">出血类型：<text>{{sickNessNEW.typeName}}</text></view>
+    </view>
+    <view class="padding-tb-xs" wx:if="{{sickNessNEW.programme != ''}}">治疗方案：<text>{{sickNessNEW.programme}}</text></view>
+    <view class="padding-tb-xs" wx:if="{{sickNessNEW.note != ''}}">记录备注：<text>{{sickNessNEW.note}}</text></view>
+    <view class="flex st-solid-bottom">
+      <view class="padding-tb-xs flex-sub">痊愈状态：<text class="text-{{sickNessNEW.recovery_time ==''?'red':'cyan'}}">{{sickNessNEW.recovery_time == ""?'未痊愈':'已痊愈'}}</text></view>
+      <!-- 已痊愈按钮 -->
+      <view class="padding-tb-xs flex-sub {{sickNessNEW.recovery_time == ''?'text-right':''}}">
+        <button wx:if="{{sickNessNEW.recovery_time == ''}}" class="cu-btn bg-cyan sm" catchtap="ImOk">我好啦~</button>
+        <text wx:else>经历：{{sickNessNEW.recovery_spec}}</text>
+      </view>
+    </view>
+    <view class="padding-top-sm">{{sickNessNEW.agan}}</view>
+  </view>
+  <view class="echarts-view bg-white shadow radius" style="height:{{echartsH}}rpx">
+    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ BleedingCharts }}"></ec-canvas>
+  </view>
+</scroll-view>
+<!-- 弹出一个框。用来选择一个时间。 -->
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">确认痊愈时间~</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xs">
+      <view class="text-center margin-top">
+        <view class="flex justify-center">
+          <picker mode="date" value="{{pickerDate}}" start="2000/01/01" bindchange="DateChange">
+            <button class="cu-btn bg-cyan light text-df shadow">
+              {{pickerDate}}
+            </button>
+          </picker>
+          <picker mode="time" value="{{pickerTime}}" bindchange="TimeChange">
+            <button class="cu-btn bg-cyan light text-df shadow margin-left-sm">
+              {{pickerTime}}
+            </button>
+          </picker>
+        </view>
+      </view>
+      <view class="grid col-2 padding-sm">
+        <view class="padding text-center">
+          <button class="cu-btn round bg-white shadow " bindtap="hideModal" style="width:100%">取消</button>
+        </view>
+        <view class="padding text-center">
+          <button class="cu-btn round bg-cyan shadow" bindtap="AMDYES" style="width:100%">确认</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

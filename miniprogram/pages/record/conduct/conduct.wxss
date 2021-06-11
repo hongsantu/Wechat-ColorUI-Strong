@@ -1,0 +1,8 @@
+/* miniprogram/pages/record/conduct/conduct.wxss */
+radio {
+  transform:scale(0.6);
+}
+.st-for-item{
+  display: flex;
+  height: 65rpx;
+}

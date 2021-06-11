@@ -1,0 +1,31 @@
+.cu-form-group .content{
+  display: flex;
+  justify-content: flex-end;
+}
+.cu-form-group .content picker{
+  flex: 1;
+  padding-right: 0;
+  overflow: initial;
+  position: relative;
+  margin-left: 16rpx;
+}
+.border-bottom{
+  border-bottom: 1rpx dashed var(--cyan);
+}
+.cu-form-group+.cu-form-group {
+  border-top: 0rpx solid #eee;
+}
+.cu-form-group picker::after{
+  display: none !important;
+}
+/* 自定义样式 */
+.st-solid-bottom{
+  border-bottom: 1px solid var(--cyan)
+}
+
+text{
+  word-break:break-all
+}
+.scrollPage {
+  height: 100vh;
+}

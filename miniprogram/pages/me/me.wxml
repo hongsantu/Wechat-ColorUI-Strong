@@ -1,0 +1,33 @@
+<view>
+  <cu-custom bgColor="bg-white" isCustom="{{true}}" needBack="{{false}}">
+    <view slot="content">I'm Strong</view>
+  </cu-custom>
+  <view class="text-center bg-white avater-view shadow-warp">
+    <view wx:if="{{hasUserInfo}}">
+      <view class="cu-avatar round xl" style="background-image:url({{userInfo.avatarUrl}});">
+        <view class="cu-tag badge cuIcon-{{userInfo.gender == 1?'male bg-blue':'female bg-pink'}}">
+        </view>
+      </view>
+      <view class="margin-top">{{userInfo.nickName}}</view>
+    </view>
+    <view wx:else>
+      <button class="cu-btn bg-white" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        <view class="cu-avatar round xl">
+          <text class="cuIcon-people"></text>
+        </view>
+      </button>
+      <view class="margin-top">点击头像进行授权登录哦</view>
+    </view>
+  </view>
+  <view class="margin-top">
+    <view class="cu-list menu ">
+      <view class="cu-item arrow" bindtap="jumpAbout">
+        <view class="content">
+          <text class="cuIcon-colorlens text-grey"></text>
+          <text class="text-grey">关于 Strong</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

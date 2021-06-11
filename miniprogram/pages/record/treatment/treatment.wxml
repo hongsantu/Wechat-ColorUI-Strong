@@ -1,0 +1,46 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">预防记录</view>
+</cu-custom>
+<view class="cu-card bg-white padding margin shadow radius shadow-lg" wx:for="{{QueryData}}" data-id="{{item._id}}" bindlongpress="longTach">
+  <view class="flex padding-tb-xs">
+    <view class="flex-sub">
+      <text class="text-grey text-sm">当周状态：</text><text class="text-df">{{item.statusName}}</text></view>
+  </view>
+  <view class=" padding-tb-xs">
+    <text class="text-grey text-sm">注射剂量：</text><text class="text-df">{{item.dose}}</text>
+  </view>
+  <view class=" padding-tb-xs">
+    <text class="text-grey text-sm">预防备注：</text><text class="text-df">{{item.note == ''?'无':item.note}}</text>
+  </view>
+  <view class=" padding-tb-xs">
+    <text class="text-grey text-sm">注射时间：</text><text class="text-df">{{item.inject_time}}</text>
+  </view>
+</view>
+<!-- 没有数据的时候展示什么 -->
+<view wx:if="{{QueryData.length == 0}}">
+  <view class="text-bold text-df text-center" style="margin-top:160rpx">没有查询到您的记录哦~</view>
+  <view class="flex justify-center margin-top-xl">
+    <button class="cu-btn bg-cyan shadow" bindtap="goRecord">点击记录点什么吧</button>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">确认提示</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xs">
+      <view class="text-center margin-top">确定要移除这条记录嘛？</view>
+      <view class="grid col-2 padding-sm">
+        <view class="padding text-center">
+          <button class="cu-btn round bg-white shadow " bindtap="hideModal" style="width:100%">取消</button>
+        </view>
+        <view class="padding text-center">
+          <button class="cu-btn round bg-cyan shadow" bindtap="removeRecord" style="width:100%">移除</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

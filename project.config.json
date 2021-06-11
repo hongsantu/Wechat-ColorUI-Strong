@@ -1,0 +1,92 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "appid": "wx970ead6087535427",
+  "projectname": "strong",
+  "libVersion": "2.10.0",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "关于Strong",
+          "pathName": "pages/me/about/about",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "增加记录",
+          "pathName": "pages/record/conduct/conduct",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "出血记录",
+          "pathName": "pages/record/sickness/sickness",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "预防记录",
+          "pathName": "pages/record/treatment/treatment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "进行编辑",
+          "pathName": "pages/record/conduct/conduct",
+          "query": "id=8e5be7055f93bd4e023e9d2c7582de03&type=0",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

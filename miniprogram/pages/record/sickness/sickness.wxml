@@ -1,0 +1,94 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">出血记录</view>
+</cu-custom>
+<view wx:for="{{QueryData}}" wx:for-item="sickness" wx:key="_id">
+  <view class="cu-card bg-white padding margin shadow radius shadow-lg" wx:for="{{sickness}}" wx:key="index" data-id="{{item._id}}" bindlongpress="longTach">
+  <view class="text-center text-blod padding-bottom-xs">{{item.occurrence_time}}</view>
+  <view class="padding-tb-xs">严重程度：<text class="text-{{item.degree == '15'?'red':(item.degree == '14'?'orange':'green')}}">{{item.degreeName}}</text></view>
+  <view class="flex">
+    <view class="padding-tb-xs flex-sub">出血部位：<text>{{item.positionName}}</text></view>
+    <view class="padding-tb-xs flex-sub">出血类型：<text>{{item.typeName}}</text></view>
+  </view>
+  <view class="padding-tb-xs" wx:if="{{item.programme != ''}}">治疗方案：<text>{{item.programme}}</text></view>
+  <view class="padding-tb-xs" wx:if="{{item.note != ''}}">记录备注：<text>{{item.note}}</text></view>
+  <view class="flex st-solid-bottom">
+      <view class="padding-tb-xs flex-sub">痊愈状态：<text class="text-{{item.recovery_time ==''?'red':'cyan'}}">{{item.recovery_time == ""?'未痊愈':'已痊愈'}}</text></view>
+      <!-- 已痊愈按钮 -->
+      <view class="padding-tb-xs flex-sub {{item.recovery_time == ''?'text-right':''}}">
+        <button wx:if="{{item.recovery_time == ''}}" class="cu-btn bg-cyan sm" data-id="{{item._id}}" data-otime="{{item.occurrence_time}}" catchtap="ImOk">我好啦~</button>
+        <text wx:else>经历：{{item.recovery_spec}}</text>
+      </view>
+    </view>
+  <!-- 操作条 -->
+  <view class="padding-top-xs flex justify-end">
+    <!-- 编辑 移除-->
+    <button class="cu-btn bg-red margin-left light" data-id="{{item._id}}" bindtap="longTach">移除</button>
+    <button class="cu-btn bg-cyan margin-left" data-id="{{item._id}}" bindtap="editEvent">编辑</button>
+  </view>
+</view>
+
+</view>
+
+<!-- 没有数据的时候展示什么 -->
+<view wx:if="{{QueryData.length == 0}}">
+  <view class="text-bold text-df text-center" style="margin-top:160rpx">没有查询到您的记录哦~</view>
+  <view class="flex justify-center margin-top-xl">
+    <button class="cu-btn bg-cyan shadow" bindtap="goRecord">点击记录点什么吧</button>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">确认提示</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xs">
+      <view class="text-center margin-top">确定要移除这条记录嘛？</view>
+      <view class="grid col-2 padding-sm">
+        <view class="padding text-center">
+          <button class="cu-btn round bg-white shadow " bindtap="hideModal" style="width:100%">取消</button>
+        </view>
+        <view class="padding text-center">
+          <button class="cu-btn round bg-cyan shadow" bindtap="removeRecord" style="width:100%">移除</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 弹出一个框。用来选择一个时间。 -->
+<view class="cu-modal {{modalName=='timeModel'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">确认痊愈时间~</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xs">
+      <view class="text-center margin-top">
+        <view class="flex justify-center">
+          <picker mode="date" value="{{pickerDate}}" start="2000/01/01" bindchange="DateChange">
+            <button class="cu-btn bg-cyan light text-df shadow">
+              {{pickerDate}}
+            </button>
+          </picker>
+          <picker mode="time" value="{{pickerTime}}" bindchange="TimeChange">
+            <button class="cu-btn bg-cyan light text-df shadow margin-left-sm">
+              {{pickerTime}}
+            </button>
+          </picker>
+        </view>
+      </view>
+      <view class="grid col-2 padding-sm">
+        <view class="padding text-center">
+          <button class="cu-btn round bg-white shadow " bindtap="hideModal" style="width:100%">取消</button>
+        </view>
+        <view class="padding text-center">
+          <button class="cu-btn round bg-cyan shadow" bindtap="AMDYES" style="width:100%">确认</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

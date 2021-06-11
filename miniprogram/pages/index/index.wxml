@@ -1,0 +1,15 @@
+<home style="{{PageCur == 'home'?'':'display:none;'}}"></home>
+<me id="meObject" style="{{PageCur == 'me'?'':'display:none;'}}"></me>
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action {{PageCur=='home'?'text-cyan':'text-gray'}}" bindtap="NavChange" data-cur="home">
+    <view class="cuIcon-homefill"></view> Strong
+  </view>
+  <view class="action text-gray add-action">
+    <button class="cu-btn cuIcon-add bg-cyan shadow" bindtap="jumpConduct"></button>
+  </view>
+  <view class="action {{PageCur=='me'?'text-cyan':'text-gray'}}" bindtap="NavChange" data-cur="me">
+    <view class="cuIcon-myfill">
+    </view>
+    寄几个儿
+  </view>
+</view>
